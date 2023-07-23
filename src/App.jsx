@@ -1,24 +1,88 @@
 import './App.css'
 import Card from './components/Card'
 
-const characters = ["Sam Winchester",
-"Dean Winchester",
-"Castiel",
-"Bobby Singer",
-"Crowley",
-"Charlie Bradbury",
-"Rowena MacLeod",
-"Lucifer",
-"Gabriel",
-"Meg Masters",
-"Jack Kline",
-"Mary Winchester",
-"John Winchester",
-"Jo Harvelle",
-"Ellen Harvelle",
-"Ruby",
-"Kevin Tran",
-"Balthazar"]
+const characters = [
+  {
+    name: 'Rick Sanchez',
+    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  },
+  {
+    name: 'Morty Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+  },
+  {
+    name: 'Summer Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
+  },
+  {
+    name: 'Beth Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
+  },
+  {
+    name: 'Jerry Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg',
+  },
+  {
+    name: 'Abadango Cluster Princess',
+    image: 'https://rickandmortyapi.com/api/character/avatar/6.jpeg',
+  },
+  {
+    name: 'Abradolf Lincler',
+    image: 'https://rickandmortyapi.com/api/character/avatar/7.jpeg',
+  },
+  {
+    name: 'Adjudicator Rick',
+    image: 'https://rickandmortyapi.com/api/character/avatar/8.jpeg',
+  },
+  {
+    name: 'Agency Director',
+    image: 'https://rickandmortyapi.com/api/character/avatar/9.jpeg',
+  },
+  {
+    name: 'Alan Rails',
+    image: 'https://rickandmortyapi.com/api/character/avatar/10.jpeg',
+  },
+  {
+    name: 'Albert Einstein',
+    image: 'https://rickandmortyapi.com/api/character/avatar/11.jpeg',
+  },
+  {
+    name: 'Alexander',
+    image: 'https://rickandmortyapi.com/api/character/avatar/12.jpeg',
+  },
+  {
+    name: 'Alien Googah',
+    image: 'https://rickandmortyapi.com/api/character/avatar/13.jpeg',
+  },
+  {
+    name: 'Alien Morty',
+    image: 'https://rickandmortyapi.com/api/character/avatar/14.jpeg',
+  },
+  {
+    name: 'Alien Rick',
+    image: 'https://rickandmortyapi.com/api/character/avatar/15.jpeg',
+  },
+  {
+    name: 'Amish Cyborg',
+    image: 'https://rickandmortyapi.com/api/character/avatar/16.jpeg',
+  },
+  {
+    name: 'Annie',
+    image: 'https://rickandmortyapi.com/api/character/avatar/17.jpeg',
+  },
+  {
+    name: 'Antenna Morty',
+    image: 'https://rickandmortyapi.com/api/character/avatar/18.jpeg',
+  },
+  // {
+  //   name: 'Antenna Rick',
+  //   image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+  // },
+]
+
+let selectedCharacters = [];
+let successCount = 0;
+
 
 //write a function that takes in an array and returns a new array with the same elements in a random order
 function shuffle(array) {
@@ -47,11 +111,11 @@ function App() {
         {shuffledCharacters.map((character) => {
           return (
             <Card
-              key={character}
-              title={character}
-              image={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(
-                Math.random() * 671
-              )}.jpeg`}
+              key={character.name}
+              title={character.name}
+              image={character.image}
+              selectedCharacters={selectedCharacters}
+              successCount={successCount}
             />
           )
         })}
