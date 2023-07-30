@@ -1,5 +1,6 @@
 import './App.css'
 import Card from './components/Card'
+import { useState } from 'react'
 
 const characters = [
   {
@@ -74,18 +75,27 @@ const characters = [
     name: 'Antenna Morty',
     image: 'https://rickandmortyapi.com/api/character/avatar/18.jpeg',
   },
-  // {
-  //   name: 'Antenna Rick',
-  //   image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
-  // },
+  {
+    name: 'Antenna Rick',
+    image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+  },
+  {
+    name: 'Ants in my Eyes Johnson',
+    image: 'https://rickandmortyapi.com/api/character/avatar/20.jpeg',
+  },
+  {
+    name: 'Aqua Morty',
+    image: 'https://rickandmortyapi.com/api/character/avatar/21.jpeg',
+  },
 ]
 
-let selectedCharacters = [];
-let successCount = 0;
+
+let fail = false;
 
 
 //write a function that takes in an array and returns a new array with the same elements in a random order
 function shuffle(array) {
+  
   let currentIndex = array.length,  randomIndex;
   // While there remain elements to shuffle...
   while (currentIndex !== 0) {
@@ -100,12 +110,19 @@ function shuffle(array) {
 
 
 function App() {
+  const [selectedCharacters, setSelectedCharacters] = useState([]);
+  const [successCount, setSuccessCount] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  console.log(selectedCharacters);
   const shuffledCharacters = shuffle(characters)
-  console.log(shuffledCharacters)
   return (
     <>
-      <nav className=' bg-black w-full opacity-75 h-24 flex justify-center items-center'>
-        <h1 className='text-4xl font-medium text-white'>SUPERNATURAL MEMORY GAME</h1>
+      <nav className=' bg-black w-full opacity-75 h-24 flex justify-center items-center relative'>
+        <h1 className='text-4xl font-medium text-white'>Rick and Morty Memory Game</h1>
+        <div className='absolute right-0 mr-10'>
+          <h2 className='text-2xl font-medium text-white'>Score: {successCount}</h2>
+          <h2 className='text-2xl font-medium text-white'>Best Score: {bestScore}</h2>
+        </div>
       </nav>
       <div className='flex flex-wrap gap-3 p-[4rem]'>
         {shuffledCharacters.map((character) => {
@@ -114,8 +131,12 @@ function App() {
               key={character.name}
               title={character.name}
               image={character.image}
-              selectedCharacters={selectedCharacters}
+              setSelectedCharacters={setSelectedCharacters}
               successCount={successCount}
+              setSuccessCount={setSuccessCount}
+              bestScore={bestScore}
+              setBestScore={setBestScore}
+              fail={fail}
             />
           )
         })}
